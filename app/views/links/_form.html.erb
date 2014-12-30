@@ -1,25 +1,39 @@
-<%= form_for(@link) do |f| %>
-  <% if @link.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+<%= form_for(@link, html: {class: "form-horizontal"}) do |f| %>
+<% if @link.errors.any? %>
+<div class="row">
+  <div id="error_explanation" class="alert alert-danger col-md-8">
+    <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
 
-      <ul>
+    <ul>
       <% @link.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+<div class="form-group">
+  <%= f.label :title, class: "col-sm-1 control-label" %>
+  <div class="col-sm-4">
+    <%= f.text_field :title, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
+</div>
+
+
+<div class="form-group">
+  <%= f.label :url, class: "col-sm-1 control-label" %>
+  <div class="col-sm-4">
+    <%= f.text_field :url, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-1 col-sm-offset-1">
+    <div class="actions">
+      <%= f.submit "Submit", class: "btn btn-md btn-primary" %>
+    </div>
   </div>
+</div>
+
 <% end %>
