@@ -62,19 +62,31 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvote
+    @link = Link.find(params[:id])
+    @link.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @link = Link.find(params[:id])
+    @link.downvote_by current_user
+    redirect_to :back
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_link
+    @link = Link.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def link_params
-      params.require(:link).permit(:title, :url)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def link_params
+    params.require(:link).permit(:title, :url)
+  end
 
-    def authorize_user
-      @link = current_user.links.find_by(id: params[:id])
-      redirect_to links_path, notice: "Not authorized to edit this link" if @link.nil?
-    end
+  def authorize_user
+    @link = current_user.links.find_by(id: params[:id])
+    redirect_to links_path, notice: "Not authorized to edit this link" if @link.nil?
+  end
 end

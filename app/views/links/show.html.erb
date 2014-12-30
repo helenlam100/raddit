@@ -1,14 +1,34 @@
-<p id="notice"><%= notice %></p>
+<h3 class="comments_title">
+  <%= @link.comments.count %> Comments
+</h3>
+
+<div id="comments">
+  <%= render :partial => @link.comments %>
+</div>
+<%= simple_form_for [@link, Comment.new] do |f| %>
+<div class="field">
+  <%= f.text_area :body, class: "form-control" %>
+</div>
+<br>
+<%= f.submit "Add Comment", class: "btn btn-primary" %>
+<% end %>
+
+
+
+
+
+
+<!-- <p id="notice"><%#= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @link.title %>
+<strong>Title:</strong>
+<%#= @link.title %>
 </p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @link.url %>
+<strong>Url:</strong>
+<%#= @link.url %>
 </p>
 
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path %>
+<%#= link_to 'Edit', edit_link_path(@link) %> |
+<%#= link_to 'Back', links_path %> -->
