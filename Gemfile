@@ -32,4 +32,12 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'simple_form'
 
-gem 'pg'
+
+
+group :production do
+  gem 'pg'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
