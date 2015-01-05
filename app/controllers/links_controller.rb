@@ -27,6 +27,11 @@ class LinksController < ApplicationController
   def create
     @link = current_user.links.build(link_params)
 
+    if @link.url.start_with?("www.")
+      newstring = "http://" + @link.url
+         @link.url = newstring
+       end
+
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'Link was successfully created.' }
